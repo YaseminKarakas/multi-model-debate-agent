@@ -1,0 +1,68 @@
+Metadata-Version: 2.4
+Name: multi-agent-debate
+Version: 0.1.0
+Summary: A Streamlit app where multiple LLM agents debate and synthesize an enriched answer.
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: langgraph
+Requires-Dist: litellm
+Requires-Dist: pydantic
+Requires-Dist: python-dotenv
+Requires-Dist: streamlit
+Requires-Dist: aiosqlite
+Requires-Dist: pyyaml
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+
+# Multi-Agent Debate
+
+A Streamlit app that lets a user ask a question, sends it through multiple LLM agents, runs several critique and revision rounds with LangGraph, and returns one agreed enriched answer.
+
+## Quick Start
+
+```bash
+cd multi-agent-debate
+python3 -m venv venv
+source venv/bin/activate
+pip install -e .
+cp .env.example .env
+```
+
+Add your Gemini key to `.env`:
+
+```env
+GEMINI_API_KEY=your_key_here
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+```
+
+Run the app:
+
+```bash
+streamlit run src/multi_agent_debate/app.py
+```
+
+If you prefer a requirements file, `pip install -r requirements.txt` also installs the runtime packages. The editable install is nicer during development because local package imports work automatically.
+
+## Default Model
+
+The app defaults to `gemini/gemini-2.5-flash` through LiteLLM. You can switch models in the sidebar if you have other provider keys configured.
+
+## Project Layout
+
+```text
+src/multi_agent_debate/
+  app.py       Streamlit user interface
+  config.py    Environment and app defaults
+  graph.py     LangGraph debate workflow
+  llm.py       LiteLLM client wrapper
+  models.py    Pydantic data models
+  prompts.py   Debate prompt builders
+  storage.py   SQLite conversation history
+```
+
+## Notes
+
+- The checked-in `.env.example` is safe to commit.
+- The real `.env` is ignored by git.
+- Debate transcripts are stored locally in `debate_history.sqlite3`.

@@ -1,0 +1,10 @@
+langgraph
+litellm
+pydantic
+python-dotenv
+streamlit
+aiosqlite
+pyyaml
+
+[dev]
+pytest

@@ -1,0 +1,25 @@
+[project]
+name = "multi-agent-debate"
+version = "0.1.0"
+description = "A Streamlit app where multiple LLM agents debate and synthesize an enriched answer."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph",
+    "litellm",
+    "pydantic",
+    "python-dotenv",
+    "streamlit",
+    "aiosqlite",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
