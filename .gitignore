@@ -6,6 +6,6 @@ __pycache__/
 .mypy_cache/
 .venv/
 venv/
-.env*
+.env
 debate_history.sqlite3
 
